@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectSchemaDefinitions xmlns="clr-namespace:Microsoft.Build.Framework.XamlTypes;assembly=Microsoft.Build.Framework">
+	<Rule Name="ReferencedPackages-AntTweakBar" PageTemplate="tool" DisplayName="Referenced Packages" SwitchPrefix="/" Order="1">
+		<Rule.Categories>
+			<Category Name="AntTweakBar" DisplayName="AntTweakBar" />
+		</Rule.Categories>
+		<Rule.DataSource>
+			<DataSource Persistence="ProjectFile" ItemType="" />
+		</Rule.DataSource>
+		<EnumProperty Name="AntTweakBarConfiguration" DisplayName="Configuration" Description="Which configuration of the library to use" Category="AntTweakBar">
+			<EnumValue Name="" DisplayName="default" />
+			<EnumValue Name="Release" DisplayName="Release" />
+			<EnumValue Name="Debug" DisplayName="Debug" />
+		</EnumProperty>
+		<EnumProperty Name="AntTweakBarPlatformToolset" DisplayName="Toolset" Description="Which toolset version of the library to use" Category="AntTweakBar">
+			<EnumValue Name="" DisplayName="default" />
+			<EnumValue Name="v140" DisplayName="MSVC 2015 (v140)" />
+			<EnumValue Name="v120" DisplayName="MSVC 2013 (v120)" />
+			<EnumValue Name="v110" DisplayName="MSVC 2012 (v110)" />
+		</EnumProperty>
+		<!--<EnumProperty Name="AntTweakBarLibType" DisplayName="Library Type" Description="Specifies whether to use the dynamic or the static library" Category="AntTweakBar">
+			<EnumValue Name="" DisplayName="Dynamic (dll, Default)" />
+			<EnumValue Name="static" DisplayName="Static (lib only)" />
+		</EnumProperty>
+		<EnumProperty Name="AntTweakBarRuntimeType" DisplayName="Runtime Linkage" Description="Specifies whether to use the dynamic or the static (/MT) runtime" Category="AntTweakBar">
+			<EnumValue Name="" DisplayName="Dynamic (/MD, /MDd, Default)" />
+			<EnumValue Name="mt" DisplayName="Static (/MT, /MTd)" />
+		</EnumProperty>-->
+	</Rule>
+</ProjectSchemaDefinitions>

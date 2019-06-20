@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- InitialTragets="FaroMorfCopySymbols" -->
+
+	<!-- additional ui -->
+	<ItemGroup>
+		<PropertyPageSchema Include="$(MSBuildThisFileDirectory)\AntTweakBar-propertiesui.xml" />
+	</ItemGroup>
+
+	<!-- Fix configuration settings -->
+	<PropertyGroup Condition="'$(AntTweakBarConfiguration)' == '' And '$(Configuration)' == 'Debug'">
+		<AntTweakBarConfiguration>Debug</AntTweakBarConfiguration>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(AntTweakBarConfiguration)' == '' And '$(Configuration)' != 'Debug'">
+		<AntTweakBarConfiguration>Release</AntTweakBarConfiguration>
+	</PropertyGroup>
+
+	<!-- Fix platform settings -->
+	<PropertyGroup Condition="'$(AntTweakBarPlatformToolset)' == '' And $(PlatformToolsetVersion) &gt;= 140 AND $(PlatformToolsetVersion) &lt; 150">
+		<AntTweakBarPlatformToolset>v140</AntTweakBarPlatformToolset>
+	</PropertyGroup>
+
+	<!-- Fix library type settings -->
+	<PropertyGroup Condition="'$(AntTweakBarLibType)' == ''">
+		<AntTweakBarLibType>dynamic</AntTweakBarLibType>
+	</PropertyGroup>
+
+	<!-- Fix runtime linkage settings -->
+	<PropertyGroup Condition="'$(AntTweakBarRuntimeType)' == ''">
+		<AntTweakBarRuntimeType>md</AntTweakBarRuntimeType>
+	</PropertyGroup>
+
+
+	<!-- Compiler settings: defines and includes -->
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<PreprocessorDefinitions>HAS_ANTTWEAK_BAR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+	</ItemDefinitionGroup>
+
+	<!-- Linker settings -->
+	<ItemDefinitionGroup Condition="'$(PlatformName)' != 'x64'">
+		<Link>
+			<AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\lib\native\$(AntTweakBarPlatformToolset)\$(PlatformName)\$(AntTweakBarLibType)\$(AntTweakBarRuntimeType)\$(AntTweakBarConfiguration)\AntTweakBar.lib;%(AdditionalDependencies)</AdditionalDependencies>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(PlatformName)' == 'x64'">
+		<Link>
+			<AdditionalDependencies>$(MSBuildThisFileDirectory)..\..\lib\native\$(AntTweakBarPlatformToolset)\$(PlatformName)\$(AntTweakBarLibType)\$(AntTweakBarRuntimeType)\$(AntTweakBarConfiguration)\AntTweakBar64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+		</Link>
+	</ItemDefinitionGroup>
+
+	<!-- Copy dll redistributable -->
+	<ItemGroup >
+		<AntTweakBarDll Include="$(MSBuildThisFileDirectory)..\..\lib\native\$(AntTweakBarPlatformToolset)\$(PlatformName)\$(AntTweakBarLibType)\$(AntTweakBarRuntimeType)\$(AntTweakBarConfiguration)\*.dll" />
+	</ItemGroup>
+
+	<Target Name="AntTweakBarCopyDll" AfterTargets="AfterBuild">
+		<Copy
+			SourceFiles="@(AntTweakBarDll)"
+			DestinationFiles="@(AntTweakBarDll->'$(TargetDir)%(RecursiveDir)%(Filename)%(Extension)')"
+			SkipUnchangedFiles="true" />
+	</Target>
+
+</Project>

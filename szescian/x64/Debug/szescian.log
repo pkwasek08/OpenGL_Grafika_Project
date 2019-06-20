@@ -1,0 +1,7 @@
+﻿  Gl_template.cpp
+c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(362): warning C4018: '<': signed/unsigned mismatch
+c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(431): warning C4838: conversion from 'int' to 'GLfloat' requires a narrowing conversion
+c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(1191): warning C4101: 'i': unreferenced local variable
+c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(1192): warning C4101: 'glError': unreferenced local variable
+c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(939): warning C4715: 'MessageProc': not all control paths return a value
+LINK : fatal error LNK1104: cannot open file 'glut32.lib'
