@@ -1,10 +1,11 @@
 ﻿  Gl_template.cpp
-c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(44): warning C4005: '_WIN32_WINNT': macro redefinition
+e:\documents\github\opengl_grafika_project\gl_template.cpp(44): warning C4005: '_WIN32_WINNT': macro redefinition
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\sdkddkver.h(216): note: see previous definition of '_WIN32_WINNT'
-c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(96): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(301): warning C4018: '<': signed/unsigned mismatch
-c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(461): warning C4838: conversion from 'int' to 'GLfloat' requires a narrowing conversion
-c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(1234): warning C4101: 'i': unreferenced local variable
-c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(1235): warning C4101: 'glError': unreferenced local variable
-c:\users\kwasi\desktop\semestr 4\grafika komputerowa\chujciwdupekonrad\opengl-rope-master\opengl-rope-master\gl_template.cpp(927): warning C4715: 'MessageProc': not all control paths return a value
-  szescian.vcxproj -> C:\Users\kwasi\Desktop\Semestr 4\Grafika komputerowa\chujciwdupeKonrad\opengl-rope-master\opengl-rope-master\Debug\szescian.exe
+e:\documents\github\opengl_grafika_project\gl_template.cpp(89): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+e:\documents\github\opengl_grafika_project\gl_template.cpp(244): warning C4838: conversion from 'int' to 'GLfloat' requires a narrowing conversion
+  menu.cpp
+  Source.cpp
+e:\documents\github\opengl_grafika_project\szescian\source.cpp(141): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+  swiatlo.cpp
+  Generating Code...
+  szescian.vcxproj -> E:\Documents\GitHub\OpenGL_Grafika_Project\Debug\szescian.exe

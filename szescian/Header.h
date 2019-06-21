@@ -19,6 +19,9 @@ private:
 public:
 	point();
 	GLfloat *vector = new GLfloat[3];
+	GLfloat *vector_A = new GLfloat[3];
+	GLfloat *vector_B = new GLfloat[3];
+
 	void set_tie_a(GLfloat x, GLfloat y, GLfloat z);
 	void set_tie_a(GLfloat *vector);
 	void set_tie_b(GLfloat x, GLfloat y, GLfloat z);
@@ -29,6 +32,8 @@ public:
 	void set_weight(GLfloat w);
 	GLfloat * update_position(void);
 	GLfloat * get_vector(const GLfloat *pos_a, const GLfloat *pos_b);
+	GLfloat * get_vector_A(const GLfloat *pos_a, const GLfloat *pos_b);
+	GLfloat * get_vector_B(const GLfloat *pos_a, const GLfloat *pos_b);
 	GLfloat * add_vector(const GLfloat *vec_a, const GLfloat *vec_b);
 	GLfloat vector_len(const GLfloat *vector);
 	GLfloat * get_position();

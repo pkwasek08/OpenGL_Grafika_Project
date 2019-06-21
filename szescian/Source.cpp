@@ -57,14 +57,17 @@ void point::set_weight(GLfloat w)
 
 GLfloat * point::update_position(void)
 {
+
 	GLfloat *prev_move = get_vector(prev_position, position);
 	GLfloat *pa;
 	GLfloat *pb;
 	GLfloat fg[3] = { 0.0f, -10.0f, 0.0f };
 	GLfloat fw[3];
 
-	pa = get_vector(position, tie_a_position);
-	pb = get_vector(position, tie_b_position);
+	if (position[1] < -48.0f) return position;
+
+	pa = get_vector_A(position, tie_a_position);
+	pb = get_vector_B(position, tie_b_position);
 	prev_position[0] = position[0];
 	prev_position[1] = position[1];
 	prev_position[2] = position[2];
@@ -110,7 +113,20 @@ GLfloat * point::get_vector(const GLfloat * pos_a, const GLfloat * pos_b)
 	vector[2] = pos_b[2] - pos_a[2];
 	return vector;
 }
-
+GLfloat * point::get_vector_A(const GLfloat * pos_a, const GLfloat * pos_b)
+{
+	vector_A[0] = pos_b[0] - pos_a[0];
+	vector_A[1] = pos_b[1] - pos_a[1];
+	vector_A[2] = pos_b[2] - pos_a[2];
+	return vector_A;
+}
+GLfloat * point::get_vector_B(const GLfloat * pos_a, const GLfloat * pos_b)
+{
+	vector_B[0] = pos_b[0] - pos_a[0];
+	vector_B[1] = pos_b[1] - pos_a[1];
+	vector_B[2] = pos_b[2] - pos_a[2];
+	return vector_B;
+}
 GLfloat * point::add_vector(const GLfloat * vec_a, const GLfloat * vec_b)
 {
 	vector[0] = vec_a[0] + vec_b[0];
@@ -144,4 +160,9 @@ GLfloat * point::get_tie_b_position()
 point::~point()
 {
 	delete vector;
+	delete vector_A;
+	delete vector_B;
+	/*delete pa;
+	delete pb;
+	delete prev_move;*/
 }
