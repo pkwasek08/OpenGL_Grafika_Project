@@ -671,8 +671,16 @@ void RenderScene(void)
 	// Clear the window with current clearing color
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	TwDefine("MENU size='200 250' ");
 	swiatlo1.ustaw(&menu_anttweak);
-
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	menu_anttweak.v[0] = menu_anttweak.v[1] = menu_anttweak.v[2] = menu_anttweak.g_LightMultiplier * 0.4f; menu_anttweak.v[3] = 1.0f;
+	glLightfv(GL_LIGHT0, GL_AMBIENT, menu_anttweak.v);
+	menu_anttweak.v[0] = menu_anttweak.v[1] = menu_anttweak.v[2] = menu_anttweak.g_LightMultiplier * 0.8f; menu_anttweak.v[3] = 1.0f;
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, menu_anttweak.v);
+	menu_anttweak.v[0] = -menu_anttweak.g_LightDirection[0]; menu_anttweak.v[1] = -menu_anttweak.g_LightDirection[1]; menu_anttweak.v[2] = -menu_anttweak.g_LightDirection[2]; menu_anttweak.v[3] = 0.0f;
+	glLightfv(GL_LIGHT0, GL_POSITION, menu_anttweak.v);	TwDefine("myBar color='222 96 128' alpha=255 text=light ");
 	parameters();
 	// Save the matrix state and do the rotations
 	glPushMatrix();
@@ -693,8 +701,8 @@ void RenderScene(void)
 	glScalef(menu_anttweak.g_Zoom, menu_anttweak.g_Zoom, menu_anttweak.g_Zoom);
 	glCallList(menu_anttweak.g_CurrentShape);
 	srand(5);
-	//spiral_model();
-	rope();
+	spiral_model();
+	//rope();
 
 	floor();
 	menu_anttweak.rysuj();

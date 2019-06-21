@@ -2,16 +2,22 @@
 #include <windows.h>            // Window defines
 #include "AntTweakBar.h"
 #include <GL/glut.h>
+#include <iostream>
+#include <string>
 class menu
 {
 
 	TwBar *myBar;
 	static bool obiekty[]; //obiekty wyœwietlane
 	bool tryb_lotu;
+	
 
 public:
 	float mat[4 * 4]; // rotation matrix
-
+	char model = 's';
+	float v[4];
+	float g_LightDirection[3] = { -0.57735f, -0.57735f, -0.57735f };
+	float g_LightMultiplier = 1.0f;
 	float xRot = 25, yRot = 35;
 	bool swiatlo = 0;
 	float jasnosc = 0.5;

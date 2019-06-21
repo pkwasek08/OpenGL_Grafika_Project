@@ -49,9 +49,7 @@ menu::menu()
 	myBar = TwNewBar("Zmiana parametrów");
 
 	TwWindowSize(400, 700);
-
-	TwDefine("myBar color='222 96 128' alpha=255 text=light ");
-	TwDefine("MENU size='200 250' ");
+	
 	TwAddSeparator(myBar, NULL, "label = '' ");
 	 // Add 'g_Zoom' to 'bar': this is a modifable (RW) variable of type TW_TYPE_FLOAT. Its key shortcuts are [z] and [Z].
     TwAddVarRW(myBar, "Zoom", TW_TYPE_FLOAT, &g_Zoom,
@@ -62,29 +60,34 @@ menu::menu()
     TwAddVarRW(myBar, "ObjRotation", TW_TYPE_QUAT4F, &g_Rotation,
                " label='Object rotation' opened=true help='Change the object orientation.' ");
 
-	/*TwAddButton(myBar, "WIDOK", NULL, NULL, NULL);
-	TwAddSeparator(myBar, NULL, "label = '' ");
-	TwAddVarRW(myBar, "Obrót góra/dól", TW_TYPE_FLOAT, &xRot, "min=0 max=360 step=5 keyIncr=Up keyDecr=Down");
-	TwAddVarRW(myBar, "Obrót prawo/lewo", TW_TYPE_FLOAT, &yRot, "min=0 max=360 step=5 keyIncr=Right keyDecr=Left");
-	TwAddSeparator(myBar, NULL, "label = '' ");*/
-	
-	TwAddSeparator(myBar, NULL, "label = '' ");
-	TwAddButton(myBar, "Punkt czerwony", NULL, NULL, NULL);
-	TwAddVarRW(myBar, "Lewo/Prawo 1", TW_TYPE_FLOAT, &params[0], "min=-100.0 max=100.0 step=1");
-	TwAddVarRW(myBar, "Góra/dól 1", TW_TYPE_FLOAT, &params[1], "min=-48.0 max=100.0 step=1");
-	TwAddVarRW(myBar, "Przód/tyl 1", TW_TYPE_FLOAT, &params[2], "min=-100.0 max=100.0 step=1");
-	
-	TwAddSeparator(myBar, NULL, "label = '' ");
-	TwAddButton(myBar, "Punkt niebieski", NULL, NULL, NULL);
-	TwAddVarRW(myBar, "Lewo/Prawo 2", TW_TYPE_FLOAT, &params[3], "min=-100.0 max=100.0 step=1");
-	TwAddVarRW(myBar, "Góra/dól 2", TW_TYPE_FLOAT, &params[4], "min=-48.0 max=100.0 step=1");
-	TwAddVarRW(myBar, "Przód/tyl 2", TW_TYPE_FLOAT, &params[5], "min=-100.0 max=100.0 step=1");
-	
+	//if (model == 's')
+	//{
+		TwAddSeparator(myBar, NULL, "label = '' ");
+		TwAddButton(myBar, "Punkt czerwony", NULL, NULL, NULL);
+		TwAddVarRW(myBar, "Lewo/Prawo 1", TW_TYPE_FLOAT, &params[0], "min=-100.0 max=100.0 step=1");
+		TwAddVarRW(myBar, "Góra/dól 1", TW_TYPE_FLOAT, &params[1], "min=-48.0 max=100.0 step=1");
+		TwAddVarRW(myBar, "Przód/tyl 1", TW_TYPE_FLOAT, &params[2], "min=-100.0 max=100.0 step=1");
+
+		TwAddSeparator(myBar, NULL, "label = '' ");
+		TwAddButton(myBar, "Punkt niebieski", NULL, NULL, NULL);
+		TwAddVarRW(myBar, "Lewo/Prawo 2", TW_TYPE_FLOAT, &params[3], "min=-100.0 max=100.0 step=1");
+		TwAddVarRW(myBar, "Góra/dól 2", TW_TYPE_FLOAT, &params[4], "min=-48.0 max=100.0 step=1");
+		TwAddVarRW(myBar, "Przód/tyl 2", TW_TYPE_FLOAT, &params[5], "min=-100.0 max=100.0 step=1");
+	//}
+	//else {
+
+	//}
 
 	TwAddSeparator(myBar, NULL, "label = '' ");
 	TwAddButton(myBar, "OSWIETLENIE", NULL, NULL, NULL);
-	TwAddVarRW(myBar, "Wlaczone", TW_TYPE_BOOLCPP, &swiatlo, "");
+	/*TwAddVarRW(myBar, "Wlaczone", TW_TYPE_BOOLCPP, &swiatlo, "");
 	TwAddVarRW(myBar, "Jasnosc", TW_TYPE_FLOAT, &jasnosc, "min=0.0 max=1.0 step=0.1");// keyIncr=w keyDecr=s");
+	TwAddSeparator(myBar, NULL, "label = '' ");*/
+	TwAddVarRW(myBar, "LightDir", TW_TYPE_DIR3F, &g_LightDirection,
+		" label='Light direction' opened=true help='Change the light direction.' ");
+	// Add 'g_LightMultiplier' to 'bar': this is a variable of type TW_TYPE_FLOAT. Its key shortcuts are [+] and [-].
+	TwAddVarRW(myBar, "Multiplier", TW_TYPE_FLOAT, &g_LightMultiplier,
+		" label='Light booster' min=0.1 max=4 step=0.02 keyIncr='+' keyDecr='-' help='Increase/decrease the light power.' ");
 
 	TwAddSeparator(myBar, NULL, "label = '' ");
 	TwAddButton(myBar, "Ilosc punktów", NULL, NULL, NULL);

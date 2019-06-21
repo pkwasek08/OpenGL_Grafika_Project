@@ -4,8 +4,6 @@ e:\documents\github\opengl_grafika_project\gl_template.cpp(44): warning C4005: '
 e:\documents\github\opengl_grafika_project\gl_template.cpp(89): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
 e:\documents\github\opengl_grafika_project\gl_template.cpp(244): warning C4838: conversion from 'int' to 'GLfloat' requires a narrowing conversion
   menu.cpp
-  Source.cpp
-e:\documents\github\opengl_grafika_project\szescian\source.cpp(141): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
   swiatlo.cpp
   Generating Code...
   szescian.vcxproj -> E:\Documents\GitHub\OpenGL_Grafika_Project\Debug\szescian.exe
