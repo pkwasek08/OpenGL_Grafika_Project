@@ -1,6 +1,6 @@
-﻿  Gl_template.cpp
-e:\documents\github\opengl_grafika_project\gl_template.cpp(44): warning C4005: '_WIN32_WINNT': macro redefinition
+﻿  main.cpp
+e:\documents\github\opengl_grafika_project\main.cpp(44): warning C4005: '_WIN32_WINNT': macro redefinition
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\sdkddkver.h(216): note: see previous definition of '_WIN32_WINNT'
-e:\documents\github\opengl_grafika_project\gl_template.cpp(90): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-e:\documents\github\opengl_grafika_project\gl_template.cpp(245): warning C4838: conversion from 'int' to 'GLfloat' requires a narrowing conversion
+e:\documents\github\opengl_grafika_project\main.cpp(90): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+e:\documents\github\opengl_grafika_project\main.cpp(246): warning C4838: conversion from 'int' to 'GLfloat' requires a narrowing conversion
   szescian.vcxproj -> E:\Documents\GitHub\OpenGL_Grafika_Project\Debug\szescian.exe
