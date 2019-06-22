@@ -15,6 +15,7 @@ class menu
 public:
 	static bool obiekty[]; //obiekty wyœwietlane
 	TwBar *myBar;
+	bool startRotate = false;
 	float mat[4 * 4]; // rotation matrix
 	char model = 's';
 	float v[4];
@@ -29,22 +30,17 @@ public:
 	Shape g_CurrentShape = SHAPE_TORUS;
 	float g_Zoom = 1.0f;
 	// Shape orientation (stored as a quaternion)
-	GLfloat g_Rotation[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	GLfloat g_Rotation[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
 	void ConvertQuaternionToMatrix(const float *quat, float *mat);
 	void SetQuaternionFromAxisAngle(const float *axis, float angle, float *quat);
 	float axis[3] = { 0.7f, 0.7f, 0.0f }; // initial model rotation
 	float angle = 0.8f;
-	GLfloat params[7] = { 10.0f,20.0f,20.0f,10.0f,10.0f, 1.0f, 0.9f };
-	int points = 15;
+	GLfloat params[7] = { 10.0f,40.0f,90.0f,10.0f,47.0f, 1.5f, 0.9f };
+	int points = 70;
 	bool start = false;
 	bool reset = false;
-	// Auto rotate
-	int g_AutoRotate = 0;
-	int g_RotateTime = 0;
-	float g_RotateStart[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	menu();
 	~menu();
-	void TW_CALL SetAutoRotateCB(const void *value, void *clientData);
 	void rysuj();
 	static bool* obiekty_wyswieltane();
 };

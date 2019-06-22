@@ -48,7 +48,8 @@ swiatlo swiatlo1;
 HHOOK MouseHook;
 // Color Palette handle
 HPALETTE hPalette = NULL;
-
+int left=0;
+int right=0;
 // Application name and instance storeage
 static LPCTSTR lpszAppName = "GL Template";
 static HINSTANCE hInstance;
@@ -62,7 +63,7 @@ static GLsizei lastWidth;
 static double hight_model = 10;
 static double width_model = 10;
 static float freq = 10;
-int points_model = 15;
+int points_model = 70;
 static float size = 3;
 static int stop = 0;
 static int s1;
@@ -70,8 +71,8 @@ static int s2;
 static int s3;
 static bool start = false;
 static bool reset = false;
-GLfloat params[7] = { 10.0f,20.0f,20.0f,10.0f,10.0f, 1.0f, 0.9f };
-int iterations = 1;
+GLfloat params[7] = { 10.0f,40.0f,90.0f,10.0f,47.0f, 1.5f, 0.9f };
+int iterations = 0;
 // Opis tekstury
 BITMAPINFOHEADER	bitmapInfoHeader;	// nagłówek obrazu
 unsigned char*		bitmapData;			// dane tekstury
@@ -402,7 +403,7 @@ int APIENTRY WinMain(HINSTANCE       hInst,
 		return FALSE;
 
 	////Timer odpowiedzialny za ruch!!!//////
-	//SetTimer(hWnd, 1, ruch::delta_t, NULL);
+	SetTimer(hWnd, 1, menu_anttweak.yRot, NULL);
 	/////////////////////////////////////////
 
 	// Wyświetla okno
@@ -481,7 +482,7 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	case WM_PAINT:
 		if (start == true)
 		{
-			for (int i = 0; i < 1000; i++)
+			for (int i = 0; i < 500; i++)
 			{
 				RenderScene();
 				//rysuj();
@@ -491,12 +492,12 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 				// Validate the newly painted client area
 				ValidateRect(hWnd, NULL);
 				iterations++;
-				if(i<20)
-					Sleep(100);
-				if (i >= 20 && i< 50)
-					Sleep(10);
-				if (i >= 50 && i < 100)
-					Sleep(1);
+		
+					glPushMatrix();
+					menu_anttweak.yRot += 0.5;
+					//yRot = (const int)yRot % 360;
+					glRotatef(menu_anttweak.yRot, 0.0f, 1.0f, 0.0f);
+				
 			}
 			start = false;
 		}
@@ -569,7 +570,13 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 	case WM_TIMER:
 	//	czas++;
 		//czas %= ruch::czas_max;
-
+		/*if (menu_anttweak.startRotate == true)
+		{
+					glPushMatrix();
+					menu_anttweak.yRot += 0.5;
+					glRotatef(menu_anttweak.yRot, 0.0f, 1.0f, 0.0f);		
+		}*/
+		//glPopMatrix();
 		// Call OpenGL drawing code
 		RenderScene();
 		
@@ -703,7 +710,7 @@ void RenderScene(void)
 	// MIEJSCE NA KOD OPENGL DO TWORZENIA WLASNYCH SCEN:		   //
 	/////////////////////////////////////////////////////////////////
 
-	glPushMatrix();
+glPushMatrix();
 	ConvertQuaternionToMatrix(menu_anttweak.g_Rotation, menu_anttweak.mat);
 	glMultMatrixf(menu_anttweak.mat);
 	glScalef(menu_anttweak.g_Zoom, menu_anttweak.g_Zoom, menu_anttweak.g_Zoom);

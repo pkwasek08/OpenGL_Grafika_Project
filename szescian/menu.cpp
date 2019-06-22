@@ -3,7 +3,6 @@
 bool menu::obiekty[] = { 0, 0 }; //drzewa, dom, gleba, droga;
 
 
-
 void menu::ConvertQuaternionToMatrix(const float * quat, float * mat)
 {
 	float yy2 = 2.0f * quat[1] * quat[1];
@@ -46,8 +45,8 @@ menu::menu()
 {
 	TwInit(TW_OPENGL, NULL);
 	
-	myBar = TwNewBar("Zmiana parametrów");
-
+	myBar = TwNewBar("PARAMETERS");
+	TwDefine(" TweakBar size='200 400' color='96 216 224' "); // change default tweak bar size and color
 	TwWindowSize(1000, 1000);
 	
 	TwAddSeparator(myBar, NULL, "label = '' ");
@@ -59,33 +58,33 @@ menu::menu()
     // Add 'g_Rotation' to 'bar': this is a variable of type TW_TYPE_QUAT4F which defines the object's orientation
     TwAddVarRW(myBar, "ObjRotation", TW_TYPE_QUAT4F, &g_Rotation,
                " label='Object rotation' opened=true help='Change the object orientation.' ");
+	TwAddVarRW(myBar, "AutoRotate", TW_TYPE_BOOLCPP, &startRotate, "");
 	//TwAddSeparator(myBar, NULL, "label = '' ");
-
+	//TwAddVarCB(myBar, "AutoRotate", TW_TYPE_BOOL32, SetAutoRotateCB, GetAutoRotateCB, NULL,
+	//	" label='Auto-rotate' key=space help='Toggle auto-rotate mode.' ");
 	//TwAddVarRW(myBar, "spirala", TW_TYPE_BOOLCPP, &obiekty[0], "");
 	//TwAddVarRW(myBar, "sznur", TW_TYPE_BOOLCPP, &obiekty[1], "");
 	TwAddSeparator(myBar, NULL, "label = '' ");
+	TwAddButton(myBar, "ANIMATION", NULL, NULL, NULL);
 	TwAddVarRW(myBar, "Start", TW_TYPE_BOOL32, &start,
-		" label='START' true='+' false='-' help='Start animation.' ");
-	TwAddSeparator(myBar, NULL, "label = '' ");
+		" label='START' ");
 	TwAddVarRW(myBar, "Reset", TW_TYPE_BOOL32, &reset,
-		" label='RESET' true='+' false='-' help='Reset animation.' ");
+		" label='RESET'");
 
 		TwAddSeparator(myBar, NULL, "label = '' ");
-		TwAddButton(myBar, "PARAMETRY MODELU", NULL, NULL, NULL);
-		TwAddVarRW(myBar, "Ilosc punktów", TW_TYPE_INT32, &points, "min=3 max=70 step=1");// keyIncr=w keyDecr=s");
+		TwAddButton(myBar, "PARAMETERS OF MODEL", NULL, NULL, NULL);
+		TwAddVarRW(myBar, "Points", TW_TYPE_INT32, &points, "min=3 max=200 step=1");// keyIncr=w keyDecr=s");
 		//TwAddButton(myBar, "Punkt czerwony", NULL, NULL, NULL);
-		TwAddVarRW(myBar, "Lewo/Prawo 1", TW_TYPE_FLOAT, &params[0], "min=-100.0 max=100.0 step=1");
-		TwAddVarRW(myBar, "Width", TW_TYPE_FLOAT, &params[1], "min=-48.0 max=100.0 step=1");
+		TwAddVarRW(myBar, "Width", TW_TYPE_FLOAT, &params[1], "min=-47.0 max=100.0 step=1");
 		TwAddVarRW(myBar, "Hight", TW_TYPE_FLOAT, &params[2], "min=-100.0 max=100.0 step=1");
 
 		//TwAddSeparator(myBar, NULL, "label = '' ");
 		//TwAddButton(myBar, "Punkt niebieski", NULL, NULL, NULL);
-		TwAddVarRW(myBar, "Lewo/Prawo 2", TW_TYPE_FLOAT, &params[3], "min=-100.0 max=100.0 step=1");
 		TwAddVarRW(myBar, "Frequence", TW_TYPE_FLOAT, &params[4], "min=-100.0 max=100.0 step=1");
-		TwAddVarRW(myBar, "Szerokosc linii", TW_TYPE_FLOAT, &params[5], "min=0 max=5.0 step=0.1");
+		TwAddVarRW(myBar, "Width of line", TW_TYPE_FLOAT, &params[5], "min=0 max=5.0 step=0.1");
 	
 	TwAddSeparator(myBar, NULL, "label = '' ");
-	TwAddButton(myBar, "OSWIETLENIE", NULL, NULL, NULL);
+	TwAddButton(myBar, "LIGHTING", NULL, NULL, NULL);
 	/*TwAddVarRW(myBar, "Wlaczone", TW_TYPE_BOOLCPP, &swiatlo, "");
 	TwAddVarRW(myBar, "Jasnosc", TW_TYPE_FLOAT, &jasnosc, "min=0.0 max=1.0 step=0.1");// keyIncr=w keyDecr=s");
 	TwAddSeparator(myBar, NULL, "label = '' ");*/
