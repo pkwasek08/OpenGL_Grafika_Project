@@ -70,7 +70,7 @@ static int s2;
 static int s3;
 static bool start = false;
 static bool reset = false;
-GLfloat params[7] = { 10.0f,10.0f,10.0f,10.0f,60.0f, 1.0f, 0.9f };
+GLfloat params[7] = { 10.0f,20.0f,20.0f,10.0f,10.0f, 1.0f, 0.9f };
 int iterations = 1;
 // Opis tekstury
 BITMAPINFOHEADER	bitmapInfoHeader;	// nagłówek obrazu
@@ -122,7 +122,7 @@ void ChangeSize(GLsizei w, GLsizei h)
 	//gluLookAt(20, 30, 20, 00, 00, -0, 0, 1, 0);
 }
 GLfloat **spiral(int a, int b, int c, int d, int k) {
-#define AM 50
+#define AM points_model
 #define M_PI 3.141592
 	float clr = 0.5f;
 	//AM points;
@@ -159,23 +159,23 @@ void spiral_model()
 {
 	#define AMOUNT  points_model
 	GLfloat col_r = 0.0f;
-	GLfloat **st_pnts = spiral(params[0], params[1], params[2], params[3], params[4]);
+	GLfloat **st_pnts = spiral(2, params[1], params[2],2, params[4]);
 	//czerwony
 	GLfloat sa[3] = { st_pnts[0][0], st_pnts[0][1], st_pnts[0][2] };
 	GLfloat s[3];
 	//niebieski
-	GLfloat sb[3] = { st_pnts[19][0], st_pnts[19][1], st_pnts[19][2] };
+	GLfloat sb[3] = { st_pnts[AMOUNT -1][0], st_pnts[AMOUNT -1][1], st_pnts[AMOUNT -1][2] };
 	point *points = new point[AMOUNT];
 
 	points[0].set_tie_a(st_pnts[0][0], st_pnts[0][1], st_pnts[0][2]);
 	points[0].set_start_position(st_pnts[1][0], st_pnts[1][1], st_pnts[1][2]);
-	points[AMOUNT-1].set_start_position(st_pnts[18][0], st_pnts[18][1], st_pnts[18][2]);
-	points[AMOUNT-1].set_tie_b(st_pnts[19][0], st_pnts[19][1], st_pnts[19][2]);
+	points[AMOUNT-1].set_start_position(st_pnts[AMOUNT -2][0], st_pnts[AMOUNT -2][1], st_pnts[AMOUNT -2][2]);
+	points[AMOUNT-1].set_tie_b(st_pnts[AMOUNT -1][0], st_pnts[AMOUNT -1][1], st_pnts[AMOUNT -1][2]);
 
 	for (int i = 1; i < AMOUNT-1; i++) {
 		points[i].set_start_position(st_pnts[i][0], st_pnts[i][1], st_pnts[i][2]);
 	}
-	glLineWidth(4.0f);
+	glLineWidth(params[5]);
 
 	for (int i = 0; i < AMOUNT; i++) {
 		delete[] st_pnts[i];
@@ -491,6 +491,12 @@ LRESULT CALLBACK WndProc(HWND    hWnd,
 				// Validate the newly painted client area
 				ValidateRect(hWnd, NULL);
 				iterations++;
+				if(i<20)
+					Sleep(100);
+				if (i >= 20 && i< 50)
+					Sleep(10);
+				if (i >= 50 && i < 100)
+					Sleep(1);
 			}
 			start = false;
 		}
@@ -681,6 +687,8 @@ void RenderScene(void)
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, menu_anttweak.v);
 	menu_anttweak.v[0] = -menu_anttweak.g_LightDirection[0]; menu_anttweak.v[1] = -menu_anttweak.g_LightDirection[1]; menu_anttweak.v[2] = -menu_anttweak.g_LightDirection[2]; menu_anttweak.v[3] = 0.0f;
 	glLightfv(GL_LIGHT0, GL_POSITION, menu_anttweak.v);	TwDefine("myBar color='222 96 128' alpha=255 text=light ");
+	
+	
 	parameters();
 	// Save the matrix state and do the rotations
 	glPushMatrix();

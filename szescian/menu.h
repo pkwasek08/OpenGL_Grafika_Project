@@ -7,12 +7,14 @@
 class menu
 {
 
-	TwBar *myBar;
-	static bool obiekty[]; //obiekty wyœwietlane
+
+
 	bool tryb_lotu;
 	
 
 public:
+	static bool obiekty[]; //obiekty wyœwietlane
+	TwBar *myBar;
 	float mat[4 * 4]; // rotation matrix
 	char model = 's';
 	float v[4];
@@ -32,7 +34,7 @@ public:
 	void SetQuaternionFromAxisAngle(const float *axis, float angle, float *quat);
 	float axis[3] = { 0.7f, 0.7f, 0.0f }; // initial model rotation
 	float angle = 0.8f;
-	GLfloat params[7] = { 10.0f,10.0f,10.0f,10.0f,60.0f, 1.0f, 0.9f };
+	GLfloat params[7] = { 10.0f,20.0f,20.0f,10.0f,10.0f, 1.0f, 0.9f };
 	int points = 15;
 	bool start = false;
 	bool reset = false;
